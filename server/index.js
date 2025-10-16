@@ -16,25 +16,34 @@ const EMAIL_PASS = process.env.EMAIL_PASS || '';
 mongoose.connect(MONGODB_URI, {
 	useNewUrlParser: true,
 	useUnifiedTopology: true
-}).catch(err => console.error('MongoDB connection error:', err));
+}).then(() => console.log('Connected to MongoDB'))
+.catch(err => console.error('MongoDB connection error:', err));
 
 app.post('/api/contact', async (req, res) => {
 	try {
+		console.log('Received contact request:', req.body);
 		const contact = new Contact(req.body);
 		await contact.save();
+		console.log('Contact saved successfully');
 
 		// Send email notification
 		if (EMAIL_USER && EMAIL_PASS) {
-			const transporter = nodemailer.createTransport({
-				service: 'gmail',
-				auth: { user: EMAIL_USER, pass: EMAIL_PASS },
-			});
-			await transporter.sendMail({
-				from: EMAIL_USER,
-				to: EMAIL_USER,
-				subject: 'New Contact Lead',
-				text: `Name: ${contact.name}\nEmail: ${contact.email}\nMessage: ${contact.message}`,
-			});
+			try {
+				const transporter = nodemailer.createTransport({
+					service: 'gmail',
+					auth: { user: EMAIL_USER, pass: EMAIL_PASS },
+				});
+				await transporter.sendMail({
+					from: EMAIL_USER,
+					to: EMAIL_USER,
+					subject: 'New Contact Lead',
+					text: `Name: ${contact.name}\nEmail: ${contact.email}\nBusiness: ${contact.business}\nMessage: ${contact.message}`,
+				});
+				console.log('Email sent successfully');
+			} catch (emailErr) {
+				console.error('Email sending failed:', emailErr);
+				// Don't fail the request if email fails
+			}
 		}
 
 		res.status(201).json({ message: 'Message received!' });
