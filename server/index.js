@@ -1,3 +1,4 @@
+require('dotenv').config();
 const express = require('express');
 const mongoose = require('mongoose');
 const cors = require('cors');
@@ -5,14 +6,15 @@ const bodyParser = require('body-parser');
 const sgMail = require('@sendgrid/mail');
 const Contact = require('./contactModel');
 
+
 const app = express();
 app.use(cors());
 app.use(bodyParser.json());
 
 const MONGODB_URI = process.env.MONGODB_URI || 'mongodb://localhost:27017/varun-digital-hub';
 const SENDGRID_API_KEY = process.env.SENDGRID_API_KEY;
-const FROM_EMAIL = process.env.FROM_EMAIL;
-const TO_EMAIL = process.env.TO_EMAIL;
+	const FROM_EMAIL = process.env.FROM_EMAIL;
+	const TO_EMAIL = process.env.TO_EMAIL;
 
 // Set SendGrid API key
 sgMail.setApiKey(SENDGRID_API_KEY);
