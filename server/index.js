@@ -8,7 +8,7 @@ const Contact = require('./contactModel');
 
 
 const app = express();
-app.use(cors());
+app.use(cors({ origin: true }));
 app.use(bodyParser.json());
 
 const MONGODB_URI = process.env.MONGODB_URI || 'mongodb://localhost:27017/varun-digital-hub';
@@ -31,6 +31,7 @@ app.post('/contact', async (req, res) => {
 		const contact = new Contact(req.body);
 		await contact.save();
 		console.log('Contact saved successfully');
+		console.log("API URL:", process.env.NEXT_PUBLIC_API_URL);
 
 		// Send email notification
 		try {
