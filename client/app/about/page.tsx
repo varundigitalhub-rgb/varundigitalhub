@@ -1,8 +1,14 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
-import { motion } from "framer-motion";
-import { fadeInUp, staggerChildren } from "../utils/animations";
+import dynamic from "next/dynamic";
+
+const MotionDiv = dynamic(() => import("framer-motion").then(mod => mod.motion.div), { ssr: false });
+const MotionSection = dynamic(() => import("framer-motion").then(mod => mod.motion.section), { ssr: false });
+const MotionH1 = dynamic(() => import("framer-motion").then(mod => mod.motion.h1), { ssr: false });
+const MotionP = dynamic(() => import("framer-motion").then(mod => mod.motion.p), { ssr: false });
+const MotionH2 = dynamic(() => import("framer-motion").then(mod => mod.motion.h2), { ssr: false });
+const MotionImg = dynamic(() => import("framer-motion").then(mod => mod.motion.img), { ssr: false });
 
 export async function generateMetadata(): Promise<Metadata> {
   return {
@@ -42,6 +48,7 @@ export async function generateMetadata(): Promise<Metadata> {
 }
 
 export default function About() {
+  const { fadeInUp, staggerChildren } = require("../utils/animations");
   return (
     <main className="min-h-screen bg-white overflow-hidden">
       {/* Hero Section */}
@@ -58,25 +65,25 @@ export default function About() {
         </div>
 
         <div className="container mx-auto px-6 relative z-20">
-          <motion.div
+          <MotionDiv
             className="max-w-4xl"
             initial="initial"
             animate="animate"
             variants={staggerChildren}
           >
-            <motion.h1
+            <MotionH1
               className="text-5xl md:text-7xl font-bold text-white mb-8 leading-tight"
               variants={fadeInUp}
             >
               About Varun Digital Hub
-            </motion.h1>
-            <motion.p
+            </MotionH1>
+            <MotionP
               className="text-xl md:text-2xl text-white/90 mb-12 max-w-2xl"
               variants={fadeInUp}
             >
               Varun Digital Hub supports Mumbai’s local businesses like coaching institutes and shops with affordable, SEO-optimized websites that rank on Google.
-            </motion.p>
-            <motion.div
+            </MotionP>
+            <MotionDiv
               className="flex flex-wrap gap-6"
               variants={fadeInUp}
             >
@@ -92,8 +99,8 @@ export default function About() {
               >
                 View Our Work
               </Link>
-            </motion.div>
-          </motion.div>
+            </MotionDiv>
+          </MotionDiv>
         </div>
 
         <div className="absolute bottom-0 left-0 w-full overflow-hidden">
@@ -108,26 +115,26 @@ export default function About() {
 
           {/* Story Section */}
           <section className="py-24 px-6">
-            <motion.div
+            <MotionDiv
               className="container mx-auto"
               initial="initial"
               whileInView="animate"
               viewport={{ once: true }}
               variants={staggerChildren}
             >
-              <motion.div
+              <MotionDiv
                 className="text-center max-w-3xl mx-auto mb-16"
                 variants={fadeInUp}
               >
-                <h2 className="text-4xl md:text-5xl font-bold text-purple-900 mb-6">
+                <MotionH2 className="text-4xl md:text-5xl font-bold text-purple-900 mb-6">
                   Our Story
-                </h2>
+                </MotionH2>
                 <p className="text-lg text-gray-600">
                   Empowering Indian businesses with beautiful, responsive, and SEO-friendly web solutions.
                 </p>
-              </motion.div>
+              </MotionDiv>
 
-              <motion.div
+              <MotionDiv
                 className="max-w-4xl mx-auto bg-white rounded-2xl shadow-lg p-8 md:p-12"
                 variants={fadeInUp}
                 whileHover={{ y: -5 }}
@@ -147,37 +154,37 @@ export default function About() {
                     <Image src="/window.svg" alt="Our Story" width={300} height={240} className="rounded-lg shadow-lg" />
                   </div>
                 </div>
-              </motion.div>
+              </MotionDiv>
 
               {/* Mission Section */}
-              <motion.div
+              <MotionDiv
                 className="text-center max-w-3xl mx-auto mt-24 mb-16"
                 variants={fadeInUp}
               >
-                <h2 className="text-4xl md:text-5xl font-bold text-purple-900 mb-6">
+                <MotionH2 className="text-4xl md:text-5xl font-bold text-purple-900 mb-6">
                   Our Mission
-                </h2>
+                </MotionH2>
                 <p className="text-lg text-gray-600 max-w-4xl mx-auto">
                   To empower Mumbai's local businesses by delivering innovative, affordable, and high-quality digital solutions that drive growth and success in the modern digital landscape, with a focus on SEO for 'web developer in Mumbai'.
                 </p>
-              </motion.div>
+              </MotionDiv>
 
               {/* Team Section */}
-              <motion.div
+              <MotionDiv
                 className="text-center max-w-3xl mx-auto mt-24 mb-16"
                 variants={fadeInUp}
               >
-                <h2 className="text-4xl md:text-5xl font-bold text-purple-900 mb-6">
+                <MotionH2 className="text-4xl md:text-5xl font-bold text-purple-900 mb-6">
                   Our Team
-                </h2>
+                </MotionH2>
                 <div className="flex flex-col items-center">
                   <img src="/varun-digital-hub-logo.png" alt="Varun Digital Hub Logo" className="w-48 h-auto mb-6" />
                   <p className="text-lg text-gray-600 max-w-4xl mx-auto">
                     Currently, Varun is the sole member of the team, passionately driving the vision and success of Varun Digital Hub. I am dedicated to delivering the best results and, as the business grows, I plan to hire talented professionals to better serve our clients.
                   </p>
                 </div>
-              </motion.div>
-            </motion.div>
+              </MotionDiv>
+            </MotionDiv>
           </section>
 
       {/* CTA Section */}
@@ -193,24 +200,24 @@ export default function About() {
           />
         </div>
 
-        <motion.div
+        <MotionDiv
           className="container mx-auto relative z-20"
           initial="initial"
           whileInView="animate"
           viewport={{ once: true }}
           variants={staggerChildren}
         >
-          <motion.div
+          <MotionDiv
             className="max-w-3xl mx-auto text-center"
             variants={fadeInUp}
           >
-            <h2 className="text-4xl md:text-5xl font-bold text-white mb-6">
+            <MotionH2 className="text-4xl md:text-5xl font-bold text-white mb-6">
               Ready to Grow Your Business Online?
-            </h2>
+            </MotionH2>
             <p className="text-xl text-white/90 mb-12">
               Let's create something amazing together. Get in touch to start your project.
             </p>
-            <motion.div
+            <MotionDiv
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
             >
@@ -220,9 +227,9 @@ export default function About() {
               >
                 Start a Conversation
               </Link>
-            </motion.div>
-          </motion.div>
-        </motion.div>
+            </MotionDiv>
+          </MotionDiv>
+        </MotionDiv>
       </section>
     </main>
   );
