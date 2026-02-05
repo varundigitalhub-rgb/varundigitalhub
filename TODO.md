@@ -1,0 +1,3 @@
+- [x] Update client/app/contact/page.tsx to fetch from deployed backend using NEXT_PUBLIC_API_URL
+- [x] Remove client/app/api/contact/route.ts to avoid confusion
+- [x] Test the connection by running frontend and submitting contact form

@@ -1,4 +1,5 @@
 {
+<<<<<<< HEAD
   "name": "client",
   "version": "0.1.0",
   "private": true,
@@ -23,5 +24,9 @@
     "@types/react-dom": "^19",
     "tailwindcss": "^4",
     "typescript": "^5"
+=======
+  "dependencies": {
+    "dotenv": "^17.2.3"
+>>>>>>> 470fed2302df017e6cbd7393303b6a04c6b84fdc
   }
 }
