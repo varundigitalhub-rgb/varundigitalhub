@@ -8,12 +8,12 @@ const testimonials = [
     text: "Working with this team was transformative for our business. They delivered beyond our expectations.",
     author: "Devgan Mukhiya",
     role: "CEO, MethodMask",
-    image: "/VARUN-DP1.png"
+    image: "/ceo-image.jpg"
   },
   {
     text: "The attention to detail and creative solutions provided were exactly what we needed.",
-    author: "Michael Chen",
-    role: "Founder, Design Co",
+    author: "Naresh Mukhiya",
+    role: "Founder, Naresh Coaching Center",
     image: "/next.svg"
   }
 ];
